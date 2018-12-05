@@ -1,0 +1,25 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "my blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuuk/blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "yuuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuuk/blog/issues"
+  },
+  "homepage": "https://github.com/yuuk/blog#readme",
+  "devDependencies": {
+    "koa": "^2.6.2"
+  }
+}
