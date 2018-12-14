@@ -61,12 +61,9 @@
           "ignoreRestSiblings": false
         }
       ],
-      "no-empty": [
-        "error",
-        {
-          "allowEmptyCatch": false
-        }
-      ]
+      "no-empty": ["error"],
+      "no-var": ["error"],
+      "eqeqeq": ["error", "always"]
     }
   },
   "devDependencies": {
