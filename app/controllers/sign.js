@@ -1,4 +1,4 @@
-const { aesEncode, aesDecode } = require('../utils/password');
+const { aesEncode } = require('../utils/password');
 const { createToken } = require('../utils/token');
 const model = require('../models/');
 
@@ -6,14 +6,14 @@ module.exports = [
     {
         method: 'GET',
         path: '/sign',
-        handler: async (ctx, next) => {
+        handler: async (ctx) => {
             await ctx.render('sign');
         }
     },
     {
         method: 'POST',
         path: '/sign',
-        handler: async (ctx, next) => {
+        handler: async (ctx) => {
             const { body } = ctx.request;
             const { username, password } = body;
             const data = await model.users.findAll({ 

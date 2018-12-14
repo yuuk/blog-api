@@ -4,7 +4,7 @@ module.exports = [{
     method: 'GET',
     path: '/user',
     use: [ checkLogin ],
-    handler: async(ctx, next) => {
+    handler: async(ctx) => {
         ctx.body = 'user';
     }
 }];

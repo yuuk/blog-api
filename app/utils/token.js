@@ -17,6 +17,7 @@ exports.checkToken = async(ctx, next) => {
     let tokenContent;
     try {
       tokenContent = await jwt.verify(token, KEY);//如果token过期或验证失败，将抛出错误
+      console.log(tokenContent);
     } catch (err) {
       ctx.throw(401, 'invalid token');
     }
