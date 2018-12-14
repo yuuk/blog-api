@@ -7,4 +7,4 @@ function dateFormat(timestamp, format='YYYY-MM-DD'){
 
 module.exports = {
     dateFormat
-}
+};

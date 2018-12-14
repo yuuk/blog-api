@@ -15,4 +15,4 @@ module.exports = async function(ctx, next) {
             ctx.body = 'Page Not Found';
     }
     await next();
-}
+};

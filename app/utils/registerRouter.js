@@ -3,11 +3,11 @@ const path = require('path');
 const { isFunction } = require('lodash');
 
 function registerRoute(router, mapping) {
-    const { method='get', path='/', use=[], fn=()=>{} } = mapping;
+    const { method='get', path='/', use=[], handler=()=>{} } = mapping;
     const isValidMiddleware = use.every(isFunction);
     // middleware 都是 function
     if (isValidMiddleware) {
-        router[method.toLowerCase()](path, ...use, fn);
+        router[method.toLowerCase()](path, ...use, handler);
     } else {
         throw new Error('middlewares is not valid!');
     }
@@ -30,5 +30,5 @@ module.exports = function(router) {
     return function(dir) {
         handleFiles(router, dir);
         return router.routes();
-    }
+    };
 };

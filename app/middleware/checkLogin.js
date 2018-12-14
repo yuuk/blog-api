@@ -5,4 +5,4 @@ module.exports = async(ctx, next) => {
     } else {
         ctx.body = '你没有登录';
     }
-}
+};

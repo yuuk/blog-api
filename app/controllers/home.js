@@ -1,17 +1,14 @@
-const {Sequelize, sequelize} = require('../utils/connect');
-
-const Posts = sequelize.define('blog_posts', {
-    post_title :Sequelize.STRING,
-    post_date :Sequelize.DATE,
-}, {
-    timestamps: false
-});
+const model = require('../models/');
 
 module.exports = [{
     method: 'GET',
     path: '/',
-    fn: async(ctx, next) => {
-        const data = await Posts.findAll({ limit: 10 });
+    handler: async(ctx, next) => {
+        const data = await model.posts.findAll({
+            where: {post_status: 'publish'},
+            limit: 10,
+            order: [['post_date', 'DESC']]
+        });
         await ctx.render('home', {
             data
         });

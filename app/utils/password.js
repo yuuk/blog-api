@@ -30,4 +30,4 @@ const aesDecode = function (data, password=PASSWORD) {
 module.exports = {
     aesEncode,
     aesDecode,
-}
+};
