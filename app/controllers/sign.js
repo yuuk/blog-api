@@ -22,7 +22,11 @@ module.exports = [
             if (data.length) {
                 const user = data[0];
                 const token = createToken(user.id);
-                ctx.cookies.set('token', token);
+                ctx.cookies.set('token', token, {
+                   path: '/',
+                   maxAge: 1000 * 60 * 60 * 2,
+                });
+                
                 console.log('aaaa');
                 await ctx.redirect('/user');
             } else {

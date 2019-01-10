@@ -34,7 +34,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": ["yarn run eslint"]
+      "pre-commit": [
+        "yarn run eslint"
+      ]
     }
   },
   "eslintConfig": {
@@ -61,9 +63,16 @@
           "ignoreRestSiblings": false
         }
       ],
-      "no-empty": ["error"],
-      "no-var": ["error"],
-      "eqeqeq": ["error", "always"]
+      "no-empty": [
+        "error"
+      ],
+      "no-var": [
+        "error"
+      ],
+      "eqeqeq": [
+        "error",
+        "always"
+      ]
     }
   },
   "devDependencies": {
@@ -80,7 +89,9 @@
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
     "lodash": "^4.17.11",
+    "moment": "^2.23.0",
     "mysql2": "^1.6.4",
     "sequelize": "^4.41.2"
   }

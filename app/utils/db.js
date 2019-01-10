@@ -11,7 +11,7 @@ const TYPES = [
     'DATE',
 ];
 
-const sequelize = new Sequelize('blog', 'root', 'root', {
+const sequelize = new Sequelize('node_blog', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
     pool: {
