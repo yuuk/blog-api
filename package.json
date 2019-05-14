@@ -29,7 +29,7 @@
     "verbose": false,
     "delay": "2500",
     "env": {
-      "PORT": 80
+      "PORT": 2334
     }
   },
   "husky": {
@@ -83,14 +83,17 @@
   "dependencies": {
     "art-template": "^4.13.2",
     "dayjs": "^1.7.7",
+    "fs-extra": "^7.0.1",
     "jsonwebtoken": "^8.4.0",
     "koa": "^2.6.2",
     "koa-art-template": "^1.1.1",
+    "koa-body": "^4.1.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
     "lodash": "^4.17.11",
+    "mime": "^2.4.2",
     "moment": "^2.23.0",
     "mysql2": "^1.6.4",
     "sequelize": "^4.41.2"

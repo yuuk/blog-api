@@ -1,11 +1,14 @@
-const { category } = require('../models/');
+const { isEmpty } = require('lodash');
+const { category, posts } = require('../models/');
 const APIError = require('../utils/apiError');
-
+const checkLogin = require('../middleware/checkLogin');
+ 
 module.exports = [
     // 获取分类列表
     {
         method: 'GET',
         path: '/api/categories',
+        use: [ checkLogin ],
         handler: async(ctx) => {
             const data = await category.findAll({});
             await ctx.rest(data);
@@ -15,6 +18,7 @@ module.exports = [
     {
         method: 'POST',
         path: '/api/category',
+        use: [ checkLogin ],
         handler: async(ctx) => {
             const { body } = ctx.request;
             await category.create(body);
@@ -25,6 +29,7 @@ module.exports = [
     {
         method: 'PUT',
         path: '/api/category/:id',
+        use: [ checkLogin ],
         handler: async(ctx) => {
             const { id } = ctx.params;
             const { body } = ctx.request;
@@ -42,19 +47,27 @@ module.exports = [
     {
         method: 'DELETE',
         path: '/api/categories/:id',
+        use: [ checkLogin ],
         handler: async(ctx) => {
             const { id } = ctx.params;
             const children = await category.findAll({
                 where: { parent_id: id }
             });
+            const foundPosts = await posts.findAll({
+                where: { category_id: id }
+            });
             // 判断是否父栏目
-            if (children.length > 0) {
+            if (!isEmpty(children)) {
                 throw new APIError('category:not_allowed_to_delete', '父栏目不允许删除!');
+            }
+            // 判断分类下是否有文章
+            if (!isEmpty(foundPosts)) {
+                throw new APIError('category:not_allowed_to_delete', '该栏目下有文章,不允许删除!');
             }
             await category.destroy({
                 where:{id: id}
             });
-            await ctx.rest({});
+            await ctx.rest(foundPosts);
         }
     }
 ];

@@ -1,19 +1,20 @@
 const { checkToken } = require('../utils/token');
+const APIError = require('../utils/apiError');
 
 
 module.exports = async(ctx, next) => {
-    const token = ctx.cookies.get('token');
+    const token = ctx.headers['token'];
     if (!token) {
-      ctx.apiError(401, {
-        code: '1000',
-        msg: 'Token is not found'
-      });
-      // ctx.throw(401, 'Token is not found');
+      ctx.status = 401;
+      ctx.body = new APIError('token:illegal_token', '登录信息不存在');
+      return;
     }
     try {
       await checkToken(token);
     } catch (err) {
-      ctx.throw(401, '登录信息有误!');
+      ctx.status = 401;
+      ctx.body = new APIError('token:illegal_token', '登录信息失效');
+      return;
     }
     await next();
 };

@@ -7,12 +7,16 @@ module.exports = db.defineModel('posts', {
     keywords: db.STRING,
     description: db.STRING,
     content: db.STRING,
-    tags: db.STRING,
+    tag_ids: db.STRING,
     category_id: db.INTEGER,
     view_count: {
         type: db.INTEGER,
         allowNull: false,
         defaultValue: 0,
+        validate: {
+            min: 0,
+            isInt: true,
+        }
     },
     comment_count: {
         type: db.INTEGER,
@@ -24,5 +28,8 @@ module.exports = db.defineModel('posts', {
         allowNull: false,
         defaultValue: moment().format(createTimeFormat),
     },
-    publish_status: db.STRING,
+    publish_status: {
+        type: db.ENUM,
+        values: ['publish', 'trash', 'draft'],
+    }
 });

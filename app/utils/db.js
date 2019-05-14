@@ -9,11 +9,13 @@ const TYPES = [
     'DATEONLY',
     'BOOLEAN',
     'DATE',
+    'ENUM',
 ];
 
 const sequelize = new Sequelize('node_blog', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
+    port: 8889,
     pool: {
         max: 5,
         min: 0,
@@ -53,3 +55,13 @@ exports.sync = function() {
         throw new Error('Cannot sync() when NODE_ENV is set to \'production\'.');
     }
 };
+
+exports.query = function(sql, options) {
+    const defaults = {
+        type: Sequelize.QueryTypes.SELECT
+    };
+    const opts = Object.assign({}, defaults, options);
+    return sequelize.query(sql, opts);
+};
+
+exports.sequelize = sequelize;
